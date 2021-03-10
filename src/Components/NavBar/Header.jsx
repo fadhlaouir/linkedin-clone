@@ -11,7 +11,7 @@ import HeaderOption from "./HeaderOption";
 import "./Header.scss";
 
 /**
- * Header Component is the navbar for our website
+ * Header Component is the navbar for our website, that containe Home, My Network ,Jobs.. buttons
  */
 function Header() {
   return (
