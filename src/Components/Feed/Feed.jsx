@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import "./Feed.scss";
+import React, { useState, useEffect } from "react";
 import InputOption from "./InputOption";
+import Post from "./Post";
+import { db } from "../firebase";
+import firebase from "firebase";
 import {
   CalendarViewDay,
   Create,
@@ -8,13 +10,34 @@ import {
   Image,
   Subscriptions,
 } from "@material-ui/icons";
-import Post from "./Post";
+import "./Feed.scss";
 
 function Feed() {
+  // Add Posts
   const [posts, setPosts] = useState([]);
+  // to store the input
+  const [input, setInput] = useState("");
+
+  useEffect(() => {
+    // connect to db
+    db.collection("posts").onSnapshot((snapshot) => {
+      setPosts(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      );
+    });
+  }, []);
   const sendPost = (event) => {
     event.preventDefault(); // stop refresh the page when click enter (Send btn)
-    setPosts([...posts]);
+    db.collection("posts").add({
+      name: "Raed Fadhlaoui",
+      description: "this is a test",
+      message: input,
+      photoUrl: "",
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(), // to change the time for each country
+    });
   };
   return (
     <div className="feed">
@@ -24,7 +47,11 @@ function Feed() {
         <div className="feed__inputContainer__input">
           <Create />
           <form>
-            <input type="text" />
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              type="text"
+            />
             <button onClick={sendPost} type="submit">
               Send
             </button>
@@ -43,12 +70,13 @@ function Feed() {
         </div>
       </div>
       {/*  Posts  */}
-      {posts.map((post) => (
+      {posts.map(({ id, data: { name, decription, message, photoUrl } }) => (
         <Post
-          name="name"
-          decription="decription"
-          message=" sdqsdsqd sdqsd qdqsdsq sdqs sdqsdsqd sqdsq dsqd sqd qsd qge"
-          photoUrl="photoUrl"
+          key={id}
+          name={name}
+          decription={decription}
+          message={message}
+          photoUrl={photoUrl}
         />
       ))}
     </div>
