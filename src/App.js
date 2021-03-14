@@ -1,18 +1,16 @@
 import React from "react";
-import "./App.scss";
+import styles from "./App.module.scss";
 import Feed from "./Components/Feed/Feed";
 import Header from "./Components/NavBar/Header";
 import SideBar from "./Components/SideBar/SideBar";
 
 function App() {
   return (
-    <div className="app">
+    <div className={styles.app}>
       <Header />
-      {/* App Body */}
-      <div className="app__body">
+      <div className={styles.app__body}>
         <SideBar />
         <Feed />
-        {/* Widgets  */}{" "}
       </div>
     </div>
   );
