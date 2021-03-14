@@ -30,7 +30,9 @@ function Feed() {
     });
   }, []);
   const sendPost = (event) => {
-    event.preventDefault(); // stop refresh the page when click enter (Send btn)
+    // stop refresh the page when click enter (Send btn)
+    event.preventDefault();
+    // add post to firebase
     db.collection("posts").add({
       name: "Raed Fadhlaoui",
       description: "this is a test",
@@ -38,6 +40,8 @@ function Feed() {
       photoUrl: "",
       timestamp: firebase.firestore.FieldValue.serverTimestamp(), // to change the time for each country
     });
+    // clear the input after adding post
+    setInput("");
   };
   return (
     <div className="feed">
@@ -70,11 +74,11 @@ function Feed() {
         </div>
       </div>
       {/*  Posts  */}
-      {posts.map(({ id, data: { name, decription, message, photoUrl } }) => (
+      {posts.map(({ id, data: { name, description, message, photoUrl } }) => (
         <Post
           key={id}
           name={name}
-          decription={decription}
+          description={description}
           message={message}
           photoUrl={photoUrl}
         />

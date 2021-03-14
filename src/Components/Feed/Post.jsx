@@ -9,14 +9,14 @@ import {
 } from "@material-ui/icons";
 import InputOption from "./InputOption";
 
-function Post({ name, decription, message, photoUrl }) {
+function Post({ name, description, message, photoUrl }) {
   return (
     <div className="post">
       <div className="post__header">
         <Avatar />
         <div className="post__header__info">
           <h2>{name}</h2>
-          <p>{decription}</p>
+          <p>{description}</p>
         </div>
       </div>
 
