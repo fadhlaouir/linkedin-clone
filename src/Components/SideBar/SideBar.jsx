@@ -1,5 +1,6 @@
 import React from "react";
 import { Avatar } from "@material-ui/core";
+import me from "../../images/me.jfif";
 import "./SideBar.scss";
 
 function SideBar() {
@@ -12,10 +13,7 @@ function SideBar() {
   return (
     <div className="sidebar">
       <div className="sidebar__top">
-        <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYv9X5jR4HKxJ9uPYEa6f52SCgxSwfumXyxQ&usqp=CAU"
-          alt="me"
-        />
+        <img src={me} alt="me" />
         <Avatar className="sidebar__top__avatar" />
         <h2>Raed Fadhlaoui</h2>
         <h4>fadhlaouiraied@hotmail.com</h4>

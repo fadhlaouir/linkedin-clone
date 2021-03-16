@@ -7,6 +7,8 @@ import {
   Chat,
   Notifications,
 } from "@material-ui/icons";
+import LinkedIn_Icon from "../../images/LinkedIn_Icon.svg";
+import me from "../../images/me.jfif";
 import HeaderOption from "./HeaderOption";
 import "./Header.scss";
 
@@ -17,13 +19,10 @@ function Header() {
   return (
     <div className="header">
       <div className="header__left">
-        <img
-          src="https://www.flaticon.com/svg/static/icons/svg/174/174857.svg"
-          alt="linkedIn-icon"
-        />
+        <img src={LinkedIn_Icon} alt="linkedIn-icon" />
         <div className="header__left__search">
           <Search />
-          <input type="text" />
+          <input placeholder="Search" type="text" />
         </div>
       </div>
 
@@ -33,10 +32,7 @@ function Header() {
         <HeaderOption Icon={BusinessCenter} title="Jobs" />
         <HeaderOption Icon={Chat} title="Messaging" />
         <HeaderOption Icon={Notifications} title="Notification" />
-        <HeaderOption
-          avatar="https://media-exp1.licdn.com/dms/image/C4D35AQHO-61aPlMFpA/profile-framedphoto-shrink_200_200/0/1614880986043?e=1615467600&v=beta&t=3Kt_tP236o2ah1mqIEEGT6UJSgVKsUAxPC_XEda8fPk"
-          title="me"
-        />
+        <HeaderOption avatar={me} title="me" />
       </div>
     </div>
   );

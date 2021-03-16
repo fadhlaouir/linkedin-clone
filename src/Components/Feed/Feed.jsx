@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import InputOption from "./InputOption";
 import Post from "./Post";
-import { db } from "../firebase";
+import { db } from "../../firebase/firebase";
 import firebase from "firebase";
 import {
   CalendarViewDay,
