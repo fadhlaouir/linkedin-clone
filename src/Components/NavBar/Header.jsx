@@ -1,4 +1,7 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { signout } from "../../features/userSlice";
+import { auth } from "../../firebase/firebase";
 import {
   BusinessCenter,
   SupervisorAccount,
@@ -16,6 +19,11 @@ import "./Header.scss";
  * Header Component is the navbar for our website, that containe Home, My Network ,Jobs.. buttons
  */
 function Header() {
+  const dispatch = useDispatch();
+  const logOutOfApp = () => {
+    dispatch(signout());
+    auth.signOut();
+  };
   return (
     <div className="header">
       <div className="header__left">
@@ -32,7 +40,7 @@ function Header() {
         <HeaderOption Icon={BusinessCenter} title="Jobs" />
         <HeaderOption Icon={Chat} title="Messaging" />
         <HeaderOption Icon={Notifications} title="Notification" />
-        <HeaderOption avatar={me} title="me" />
+        <HeaderOption avatar={me} title="me" onClick={logOutOfApp} />
       </div>
     </div>
   );
